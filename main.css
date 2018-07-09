@@ -1,0 +1,74 @@
+* {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+    printer-colors: exact;
+}
+
+body {
+    margin-top: 44px;
+}
+
+.card {
+    background-image: url(grid.png);
+    background-position: center;
+}
+
+.card-header {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-size: 8pt;
+}
+
+#card img {
+    border-width: 3px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 1px;
+}
+
+.code {
+    background-color: orange;
+    color: darkblue;
+}
+
+.mindset {
+    background-color: blueviolet;
+    color: white;
+}
+
+.allerlei {
+    background-color: yellowgreen;
+    color: black;
+}
+
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+
+    #card {
+        width: 550px;
+        height: 280px;
+    }
+
+    .card-title {
+        font-size: 24pt;
+    }
+    .card-text {
+        font-size: 18pt;
+    }
+}
+
+@media screen
+{    
+    .no-screen, .no-screen *
+    {
+        display: none !important;
+    }
+    #card {
+        width: 450px;
+        height: 200px;
+    }
+}

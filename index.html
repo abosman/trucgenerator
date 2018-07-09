@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>De Truc Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="main.css" />
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- production version, optimized for size and speed -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+</head>
+
+<body>
+
+    <div id="app" class="container">
+
+        <div id="card" class="card shadow-lg p-0 mb-5 rounded no-screen" :class="category">
+            <!-- <img class="card-img-top" src=".../100px180/" alt="Card image cap"> -->
+            <div class="card-header">{{category}}</div>
+            <div class="card-body">
+                <h5 class="card-title" v-if="title !== null">{{ title }}</h5>
+                <h5 class="card-title" v-else="title !== null">Hier komt de titel</h5>
+                <div class="media">
+                    <p class="media-body card-text" style="white-space: pre-line;" v-if="body !== null">{{ body }}</p>
+                    <p class="media-body card-text" style="white-space: pre-line;" v-else>Hier komt de tekst</p>
+                    <img :src="qrLink" />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row h-100 no-print">
+            <div class="col-md-5">
+                <div id="card" class="card shadow-lg p-0 mb-5 rounded" :class="category">
+                    <!-- <img class="card-img-top" src=".../100px180/" alt="Card image cap"> -->
+                    <div class="card-header">{{category}}</div>
+                    <div class="card-body">
+                        <h5 class="card-title" v-if="title !== null">{{ title }}</h5>
+                        <h5 class="card-title" v-else="title !== null">Hier komt de titel</h5>
+                        <div class="media">
+                            <p class="media-body card-text" style="white-space: pre-line;" v-if="body !== null">{{ body }}</p>
+                            <p class="media-body card-text" style="white-space: pre-line;" v-else>Hier komt de tekst</p>
+                            <img :src="qrLink" />
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-success" v-on:click="printCard"><i class="fa fa-print"></i> Print</button>
+            </div>
+            <div class="col-md-1">
+                &nbsp;
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="title">Titel</label>
+                    <input type="text" v-model="title" class="form-control" id="title" placeholder="Hoe heet de truc?">
+                </div>
+                <div class="form-group">
+                    <label for="body">Tekst</label>
+                    <textarea type="text" v-model="body" class="form-control" id="body" placeholder="Wat wil je er nog meer over kwijt?"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="link">Link</label>
+                    <div class="input-group">
+                        <input type="text" v-model="link" v-on:blur="getQR" class="form-control" id="link" placeholder="Waar kunnen we er meer over lezen?">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary btn-sm" v-on:click="getQR">
+                                <i class="fa fa-sync"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                    <small id="linkHelp" class="form-text text-muted">Klik nog even op de Update-knop om de qr-code op te halen.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Categorie</label>
+                    <br/>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" v-model="category" id="c1" value="code">
+                        <label class="form-check-label" for="c1">Code</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" v-model="category" id="c2" value="mindset">
+                        <label class="form-check-label" for="c2">Mindset</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" v-model="category" id="c3" value="allerlei">
+                        <label class="form-check-label" for="c3">Allerlei</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
