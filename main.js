@@ -5,7 +5,13 @@ var app = new Vue({
         body: null,
         link: null,
         qrLink: null,
-        category: "code"        
+        category: "code",
+        categories: [
+            { name: "Code", value: "code" },
+            { name: "Mindset", value: "mindset" },
+            { name: "Allerlei", value: "allerlei" },
+            { name: "Tools", value: "tools" }
+        ]
     },
     methods: {
         getQR: function() {

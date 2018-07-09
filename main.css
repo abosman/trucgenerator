@@ -41,6 +41,11 @@ body {
     color: black;
 }
 
+.tools {
+    background-color: lightblue;
+    color: black;
+}
+
 @media print
 {    
     .no-print, .no-print *
