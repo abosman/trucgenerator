@@ -9,8 +9,8 @@ var app = new Vue({
         categories: [
             { name: "Code", value: "code" },
             { name: "Mindset", value: "mindset" },
-            { name: "Allerlei", value: "allerlei" },
-            { name: "Tools", value: "tools" }
+            { name: "Tools", value: "tools" },
+            { name: "Allerlei", value: "allerlei" }
         ]
     },
     methods: {
